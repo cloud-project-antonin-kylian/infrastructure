@@ -1,0 +1,42 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  labels:
+    app: housing-publication
+    version: "1.0"
+  name: housing-publication
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: housing-publication
+  strategy: {}
+  template:
+    metadata:
+      labels:
+        app: housing-publication
+    spec:
+      containers:
+        - name: housing-publication
+          image: cloudprojectantoninkylian/housing-publication:1.0.0
+          imagePullPolicy: IfNotPresent
+      resources: {}
+status: {}
+
+---
+
+apiVersion: v1
+kind: Service
+metadata:
+  labels:
+    app: housing-publicaion
+  name: housing-publication
+spec:
+  ports:
+    - port: 8080
+      protocol: TCP
+      targetPort: 8080
+      name: http
+  selector:
+    app: housing-publication
+  type: NodePort
