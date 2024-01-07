@@ -24,6 +24,32 @@ status: {}
 
 ---
 
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  labels:
+    app: user-management
+    version: "1.0"
+  name: user-management
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: user-management
+  strategy: {}
+  template:
+    metadata:
+      labels:
+        app: user-management
+    spec:
+      containers:
+        - name: user-management
+          image: cloudprojectantoninkylian/user-management:1.0.0
+          imagePullPolicy: IfNotPresent
+status: {}
+
+---
+
 apiVersion: v1
 kind: Service
 metadata:
@@ -38,4 +64,22 @@ spec:
       name: http
   selector:
     app: housing-publication
-  type: NodePort
+  type: ClusterIP
+
+---
+
+apiVersion: v1
+kind: Service
+metadata:
+  labels:
+    app: user-management
+  name: user-management
+spec:
+  ports:
+    - port: 8080
+      protocol: TCP
+      targetPort: 8080
+      name: http
+  selector:
+    app: user-management
+  type: ClusterIP

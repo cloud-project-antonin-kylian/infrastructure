@@ -1,16 +1,25 @@
 apiVersion: networking.k8s.io/v1
 kind: Ingress
 metadata:
-  name: housing-publication-ingress
+  name: cloud-project-ingress
+  annotations:
+    nginx.ingress.kubernetes.io/rewrite-target: /$1
 spec:
   rules:
-    - host: housing-publication.info
+    - host: cloud-project.info
       http:
         paths:
-          - path: /
-            pathType: Prefix
+          - path: /housing-publication/(.*)
+            pathType: ImplementationSpecific
             backend:
               service:
                 name: housing-publication
+                port:
+                  number: 8080
+          - path: /user-management/(.*)
+            pathType: ImplementationSpecific
+            backend:
+              service:
+                name: user-management
                 port:
                   number: 8080
