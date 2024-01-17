@@ -4,8 +4,19 @@
 ```bash
 minikube start
 ```
-#### Apply postgres 
-Ce fichier définit le mot de passe qui sera utilisé lors de la connexion au serveur  Postgres.
+
+#### Launch Deployment and Service of our both services
+```bash
+kubectl apply -f microservices.yaml
+```
+
+#### Launch Ingress 
+```bash
+kubectl apply -f infrastructure.yaml
+```
+
+#### Launch postgres 
+
 ```bash 
 kubectl apply -f postges-secret.yaml
 kubectl apply -f postges-storage.yaml
