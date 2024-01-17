@@ -46,6 +46,19 @@ spec:
         - name: user-management
           image: cloudprojectantoninkylian/user-management:1.0.0
           imagePullPolicy: IfNotPresent
+          env : 
+            - name : DATASOURCE_URL
+              value : jdbc:postgresql://postgres:5432/postgresdb
+            - name: DATASOURCE_USERNAME
+              valueFrom:
+                configMapKeyRef:
+                  name: postgres-config
+                  key: POSTGRES_USER
+            - name: DATASOURCE_PASSWORD
+              valueFrom:
+                secretKeyRef:
+                  name: postgres-secret
+                  key: password
 status: {}
 
 ---
