@@ -17,11 +17,13 @@ kubectl apply -f infrastructure.yaml
 
 #### Launch postgres 
 
-```bash 
-kubectl apply -f postges-secret.yaml
-kubectl apply -f postges-storage.yaml
-kubectl apply -f postges-deployment.yaml
-kubectl apply -f postges-service.yaml
+```bash
+cd postgres
+kubectl apply -f postgres-config.yaml
+kubectl apply -f postgres-secret.yaml
+kubectl apply -f postgres-storage.yaml
+kubectl apply -f postgres-deployment.yaml
+kubectl apply -f postgres-service.yaml
 ```
 
 #### Connexion at postgres 
