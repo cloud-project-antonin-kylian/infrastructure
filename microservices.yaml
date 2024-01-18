@@ -60,7 +60,7 @@ spec:
                   name: postgres-secret
                   key: password
             - name: SPRING_JPA_HIBERNATE_DDL_AUTO
-            value: update
+              value: update
 status: {}
 
 ---
