@@ -47,18 +47,20 @@ spec:
           image: cloudprojectantoninkylian/user-management:1.0.0
           imagePullPolicy: IfNotPresent
           env : 
-            - name : DATASOURCE_URL
+            - name : SPRING_DATASOURCE_URL
               value : jdbc:postgresql://postgres:5432/postgresdb
-            - name: DATASOURCE_USERNAME
+            - name: SPRING_DATASOURCE_USERNAME
               valueFrom:
                 configMapKeyRef:
                   name: postgres-config
                   key: POSTGRES_USER
-            - name: DATASOURCE_PASSWORD
+            - name: SPRING_DATASOURCE_PASSWORD
               valueFrom:
                 secretKeyRef:
                   name: postgres-secret
                   key: password
+            - name: SPRING_JPA_HIBERNATE_DDL_AUTO
+            value: update
 status: {}
 
 ---
